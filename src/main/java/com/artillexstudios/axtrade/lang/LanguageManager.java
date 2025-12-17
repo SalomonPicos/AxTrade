@@ -37,7 +37,7 @@ public class LanguageManager {
         final List<String> versions = Version.getServerVersion().getVersions();
         final String version = versions.get(versions.size() - 1);
         final String url = "https://api.github.com/repos/InventivetalentDev/minecraft-assets/contents/assets/minecraft/lang/" + lang + ".json?ref=" + version;
-        Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("&#00FF00╠ &#AAFFAADownloading &f" + lang + " &#AAFFAAlanguage files.."));
+        Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("<#00FF00>╠ <#AAFFAA>Downloading <white>" + lang + "</white> <#AAFFAA>language files.."));
 
         final HttpClient client = HttpClient.newHttpClient();
         final HttpRequest request = HttpRequest.newBuilder()

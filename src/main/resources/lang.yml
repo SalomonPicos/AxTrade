@@ -20,59 +20,59 @@ admin-help:
   - " "
 
 reload:
-  success: "&#33FF33Plugin successfully reloaded!"
-  failed: "&#FF3333Failed to reload the plugin! Something is wrong in the &f%file%&#FF3333 file, look in the console or use a yaml validator to fix the errors!"
+  success: "<#33FF33>Plugin successfully reloaded!"
+  failed: "<#FF3333>Failed to reload the plugin! Something is wrong in the <white>%file%<#FF3333> file, look in the console or use a yaml validator to fix the errors!"
 
 trade:
-  started: "&#CCFFEEYou have started a trade with &#00FFDD%player%&#CCFFEE!"
-  completed: "&#CCFFEEYour trade with &#00FFDD%player% &#CCFFEEwas completed!"
-  aborted: "&#CCFFEEYour trade with &#00FFDD%player% &#CCFFEEwas aborted!"
-  blacklisted-item: "&#CCFFEEThis item is blacklisted!"
-  inventory-full: "&#CCFFEEYou can't put any more items in the gui, because your trade partner has no more empty slots."
-  preview-info: "&#CCFFEEYou are opening the preview gui, this is meant for testing your configuration, clicking buttons will cause errors and might not work."
+  started: "<#CCFFEE>You have started a trade with <#00FFDD>%player%<#CCFFEE>!"
+  completed: "<#CCFFEE>Your trade with <#00FFDD>%player% <#CCFFEE>was completed!"
+  aborted: "<#CCFFEE>Your trade with <#00FFDD>%player% <#CCFFEE>was aborted!"
+  blacklisted-item: "<#CCFFEE>This item is blacklisted!"
+  inventory-full: "<#CCFFEE>You can't put any more items in the gui, because your trade partner has no more empty slots."
+  preview-info: "<#CCFFEE>You are opening the preview gui, this is meant for testing your configuration, clicking buttons will cause errors and might not work."
 
 toggle:
-  enabled: "&#CCFFEEYou have enabled trade requests!"
-  disabled: "&#CCFFEEYou have disabled trade requests!"
+  enabled: "<#CCFFEE>You have enabled trade requests!"
+  disabled: "<#CCFFEE>You have disabled trade requests!"
 
 # summary after a successful trade
 summary:
   get:
-    item: "&#00FF00&l+ &#00FF00%amount%x %item%"
-    currency: "&#00FF00&l+ &#00FF00%amount% %currency%"
+    item: "<#00FF00><b>+ </b>%amount%x %item%"
+    currency: "<#00FF00><b>+ </b>%amount% %currency%"
   give:
-    item: "&#FF0000&l- &#FF0000%amount%x %item%"
-    currency: "&#FF0000&l- &#FF0000%amount% %currency%"
+    item: "<#FF0000><b>- </b>%amount%x %item%"
+    currency: "<#FF0000><b>- </b>%amount% %currency%"
 
 currency-editor:
-  success: "&#CCFFEESuccessfully changed value!"
-  failed: "&#CCFFEEIncorrect value!"
-  not-enough: "&#CCFFEEYou don't have enough of this currency!"
+  success: "<#CCFFEE>Successfully changed value!"
+  failed: "<#CCFFEE>Incorrect value!"
+  not-enough: "<#CCFFEE>You don't have enough of this currency!"
 
 request:
-  sent-sender: "&#CCFFEEYou have successfully sent a trade request to &#00FFDD%player%&#CCFFEE!"
+  sent-sender: "<#CCFFEE>You have successfully sent a trade request to <#00FFDD>%player%<#CCFFEE>!"
   sent-receiver:
-    info: "&#CCFFEEYou have received a trade request from &#00FFDD%player%&#CCFFEE!"
+    info: "<#CCFFEE>You have received a trade request from <#00FFDD>%player%<#CCFFEE>!"
     accept:
-      message: "&#00FF00/trade accept %player%"
-      hover: "&#00FF00Click here to &naccept&#00FF00 trade request!"
+      message: "<#00FF00>/trade accept %player%"
+      hover: "<#00FF00>Click here to <underlined>accept</underlined> trade request!"
     deny:
-      message: "&#FF0000/trade deny %player%"
-      hover: "&#FF0000Click here to &ndeny&#FF0000 trade request!"
-  no-request: "&#CCFFEEYou don't have an active trade request from &#00FFDD%player%&#CCFFEE!"
-  deny-sender: "&#CCFFEEYou trade request was denied by &#00FFDD%player%&#CCFFEE!"
-  deny-receiver: "&#CCFFEEYou have successfully denied &#00FFDD%player%&#CCFFEE's trade request!"
-  cant-trade-self: "&#CCFFEEYou can't send a trade request to yourself!"
-  already-in-trade: "&#CCFFEEThe player is already trading with someone!"
-  already-sent: "&#CCFFEEYou have already sent a trade request to &#00FFDD%player% &#CCFFEErecently!"
-  too-far: "&#CCFFEEYou are too far from &#00FFDD%player% &#CCFFEEto send a trade request!"
-  not-accepting: "&#CCFFEEThis player is not accepting trades!"
-  disallowed-gamemode: "&#CCFFEEEither you or the other player is in a disallowed gamemode!"
-  same-ip: "&#CCFFEEYou can't trade with an account that has the same ip as you!"
-  below-required-amount: "&#CCFFEEYou are required to trade at least &f%amount% %currency%&#CCFFEE!"
-  blacklisted-world: "&#CCFFEETrades are disabled in this world!"
-  expired: "&#CCFFEEYour trade request to &#00FFDD%player% &#CCFFEEhas expired!"
-  disabled-trading: "&#CCFFEEYou have disabled trades! Use &#00FFDD/trade toggle &#CCFFEEto enable."
+      message: "<#FF0000>/trade deny %player%"
+      hover: "<#FF0000>Click here to <underlined>deny</underlined> trade request!"
+  no-request: "<#CCFFEE>You don't have an active trade request from <#00FFDD>%player%<#CCFFEE>!"
+  deny-sender: "<#CCFFEE>You trade request was denied by <#00FFDD>%player%<#CCFFEE>!"
+  deny-receiver: "<#CCFFEE>You have successfully denied <#00FFDD>%player%<#CCFFEE>'s trade request!"
+  cant-trade-self: "<#CCFFEE>You can't send a trade request to yourself!"
+  already-in-trade: "<#CCFFEE>The player is already trading with someone!"
+  already-sent: "<#CCFFEE>You have already sent a trade request to <#00FFDD>%player% <#CCFFEE>recently!"
+  too-far: "<#CCFFEE>You are too far from <#00FFDD>%player% <#CCFFEE>to send a trade request!"
+  not-accepting: "<#CCFFEE>This player is not accepting trades!"
+  disallowed-gamemode: "<#CCFFEE>Either you or the other player is in a disallowed gamemode!"
+  same-ip: "<#CCFFEE>You can't trade with an account that has the same ip as you!"
+  below-required-amount: "<#CCFFEE>You are required to trade at least <white>%amount% %currency%<#CCFFEE>!"
+  blacklisted-world: "<#CCFFEE>Trades are disabled in this world!"
+  expired: "<#CCFFEE>Your trade request to <#00FFDD>%player% <#CCFFEE>has expired!"
+  disabled-trading: "<#CCFFEE>You have disabled trades! Use <#00FFDD>/trade toggle <#CCFFEE>to enable."
 
 # this must be 4 lines
 # note: currently the first line must be left empty
@@ -103,17 +103,17 @@ placeholders:
   waiting: "Waiting"
 
 commands:
-  invalid-value: "&#FF0000Invalid parameter: &#BB0000%value%"
-  invalid-command: "&#FF0000Invalid command or subcommand!"
-  missing-argument: "&#FF0000Missing argument! You must specify a value for &#BB0000%value%&#FF0000."
-  no-permission: "&#FF0000You don't have permission to access this command!"
-  out-of-range: "&#FF0000The &#BB0000%number% &#FF0000must be between &#BB0000%min% &#FF0000and &#BB0000%max%&#FF0000!"
-  player-only: "&#FF0000You must be a player to use this command!"
-  invalid-player: "&#FF0000The player &#BB0000%player% &#FF0000can not be found!"
-  invalid-selector: "&#FF0000You can not use this selector in this command!"
+  invalid-value: "<#FF0000>Invalid parameter: <#BB0000>%value%"
+  invalid-command: "<#FF0000>Invalid command or subcommand!"
+  missing-argument: "<#FF0000>Missing argument! You must specify a value for <#BB0000>%value%<#FF0000>."
+  no-permission: "<#FF0000>You don't have permission to access this command!"
+  out-of-range: "<#FF0000>The <#BB0000>%number% <#FF0000>must be between <#BB0000>%min% <#FF0000>and <#BB0000>%max%<#FF0000>!"
+  player-only: "<#FF0000>You must be a player to use this command!"
+  invalid-player: "<#FF0000>The player <#BB0000>%player% <#FF0000>can not be found!"
+  invalid-selector: "<#FF0000>You can not use this selector in this command!"
 
-update-notifier: "&#AAFFCCThere is a new version of the plugin available! &#DDDDDD(&#FFFFFFcurrent: &#FF0000%current% &#DDDDDD| &#FFFFFFlatest: &#00FF00%latest%&#DDDDDD)"
-safety: "&#FF0000This feature has been disabled for safety reasons and updating the plugin is required, please contact the server administrators."
+update-notifier: "<#AAFFCC>There is a new version of the plugin available! <#DDDDDD>(<#FFFFFF>current: <#FF0000>%current% <#DDDDDD>| <#FFFFFF>latest: <#00FF00>%latest%<#DDDDDD>)"
+safety: "<#FF0000>This feature has been disabled for safety reasons and updating the plugin is required, please contact the server administrators."
 
 # do not change this
 version: 9

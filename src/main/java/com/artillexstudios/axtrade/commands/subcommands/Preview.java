@@ -11,7 +11,7 @@ public enum Preview {
     INSTANCE;
 
     public void execute(Player sender) {
-        Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("&#33FF33[AxTrade] Opening trade preview for " + sender.getName() + ", any errors under this should be ignored!"));
+        Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("<#33FF33>[AxTrade] Opening trade preview for <white>" + sender.getName() + "</white><#33FF33>, any errors under this should be ignored!"));
         new Trade(sender, sender);
         MESSAGEUTILS.sendLang(sender, "trade.preview-info");
     }

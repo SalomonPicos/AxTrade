@@ -73,7 +73,7 @@ public final class AxTrade extends AxPlugin {
 
         CommandManager.load();
 
-        Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("&#00FFDD[AxTrade] Loaded plugin!"));
+        Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("<#00FFDD>[AxTrade] Loaded plugin!"));
 
         metrics = new AxMetrics(this, 8);
         metrics.start();
@@ -87,7 +87,7 @@ public final class AxTrade extends AxPlugin {
     }
 
     public void updateFlags() {
-        FeatureFlags.USE_LEGACY_HEX_FORMATTER.set(true);
+        FeatureFlags.USE_LEGACY_HEX_FORMATTER.set(false);
         FeatureFlags.PLACEHOLDER_API_HOOK.set(true);
         FeatureFlags.PLACEHOLDER_API_IDENTIFIER.set("axtrade");
         FeatureFlags.ENABLE_PACKET_LISTENERS.set(true);
