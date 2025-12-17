@@ -18,7 +18,9 @@ public class SoundUtils {
         try {
             player.playSound(player, LANG.getString("sounds." + route), 1, 1);
         } catch (InvalidKeyException ex) {
-            Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("&#FF0000[AxTrade] The sound %sound% does not exist, section: %section%!".replace("%sound%", LANG.getString("sounds." + route)).replace("%section%", route)));
+            Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("<#FF0000>[AxTrade] The sound %sound% does not exist, section: %section%!"
+                    .replace("%sound%", LANG.getString("sounds." + route))
+                    .replace("%section%", route)));
         }
     }
 }

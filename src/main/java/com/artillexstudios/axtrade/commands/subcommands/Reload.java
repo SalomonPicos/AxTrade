@@ -19,37 +19,37 @@ public enum Reload {
     INSTANCE;
 
     public void execute(CommandSender sender) {
-        Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("&#00FFDD[AxTrade] &#AAFFDDReloading configuration..."));
+        Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("<#00FFDD>[AxTrade] <#AAFFDD>Reloading configuration..."));
         if (!CONFIG.reload()) {
             MESSAGEUTILS.sendLang(sender, "reload.failed", Map.of("%file%", "config.yml"));
             return;
         }
-        Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("&#00FFDD╠ &#AAFFDDReloaded &fconfig.yml&#AAFFDD!"));
+        Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("<#00FFDD>╠ <#AAFFDD>Reloaded <white>config.yml</white><#AAFFDD>!"));
 
         if (!LANG.reload()) {
             MESSAGEUTILS.sendLang(sender, "reload.failed", Map.of("%file%", "lang.yml"));
             return;
         }
-        Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("&#00FFDD╠ &#AAFFDDReloaded &flang.yml&#AAFFDD!"));
+        Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("<#00FFDD>╠ <#AAFFDD>Reloaded <white>lang.yml</white><#AAFFDD>!"));
 
         if (!GUIS.reload()) {
             MESSAGEUTILS.sendLang(sender, "reload.failed", Map.of("%file%", "guis.yml"));
             return;
         }
-        Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("&#00FFDD╠ &#AAFFDDReloaded &fguis.yml&#AAFFDD!"));
+        Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("<#00FFDD>╠ <#AAFFDD>Reloaded <white>guis.yml</white><#AAFFDD>!"));
 
         if (!HOOKS.reload()) {
             MESSAGEUTILS.sendLang(sender, "reload.failed", Map.of("%file%", "currencies.yml"));
             return;
         }
-        Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("&#00FFDD╠ &#AAFFDDReloaded &fcurrencies.yml&#AAFFDD!"));
+        Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("<#00FFDD>╠ <#AAFFDD>Reloaded <white>currencies.yml</white><#AAFFDD>!"));
 
         LanguageManager.reload();
 
         HookManager.updateHooks();
         NumberUtils.reload();
 
-        Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("&#00FFDD╚ &#AAFFDDSuccessful reload!"));
+        Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("<#00FFDD>╚ <#AAFFDD>Successful reload!"));
         MESSAGEUTILS.sendLang(sender, "reload.success");
     }
 }

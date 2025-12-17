@@ -17,6 +17,7 @@ import dev.triumphteam.gui.guis.BaseGui;
 import dev.triumphteam.gui.guis.Gui;
 import dev.triumphteam.gui.guis.GuiItem;
 import dev.triumphteam.gui.guis.StorageGui;
+import org.bukkit.Bukkit;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Tag;
 import org.bukkit.entity.Player;
@@ -36,6 +37,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.lang.reflect.Method;
 
 import static com.artillexstudios.axtrade.AxTrade.CONFIG;
 import static com.artillexstudios.axtrade.AxTrade.GUIS;
@@ -44,6 +46,8 @@ import static com.artillexstudios.axtrade.AxTrade.MESSAGEUTILS;
 
 public class TradeGui extends GuiFrame {
     private static final Cooldown<Player> confirmCooldown = Cooldown.create();
+    private static volatile Method placeholderApiSetPlaceholders = null;
+    private static volatile boolean placeholderApiInitDone = false;
     protected final Trade trade;
     private final TradePlayer player;
     protected final StorageGui gui;
@@ -352,20 +356,50 @@ public class TradeGui extends GuiFrame {
     }
 
     public void updateTitle() {
-        String newTitle = GUIS.getString("title")
+        String title = GUIS.getString("title")
                 .replace("%player%", player.getOtherPlayer().getPlayer().getName())
                 .replace("%own-status%", player.hasConfirmed() ? LANG.getString("placeholders.ready") : LANG.getString("placeholders.waiting"))
                 .replace("%partner-status%", player.getOtherPlayer().hasConfirmed() ? LANG.getString("placeholders.ready") : LANG.getString("placeholders.waiting"));
 
+        title = applyPlaceholderApi(title);
+
         // don't update title if it didn't change
-        if (currentTitle.equals(newTitle)) return;
-        this.currentTitle = newTitle;
+        if (currentTitle.equals(title)) return;
+        this.currentTitle = title;
+        final String finalTitle = title;
 
         Scheduler.get().runLater(task -> {
             Inventory topInv = player.getPlayer().getOpenInventory().getTopInventory();
             if (topInv.equals(gui.getInventory())) {
-                NMSHandlers.getNmsHandler().setTitle(player.getPlayer().getOpenInventory().getTopInventory(), StringUtils.format(newTitle));
+                NMSHandlers.getNmsHandler().setTitle(player.getPlayer().getOpenInventory().getTopInventory(), StringUtils.format(finalTitle));
             }
         }, 1);
+    }
+
+    private String applyPlaceholderApi(String input) {
+        if (input == null || input.isBlank()) return input;
+        if (!Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) return input;
+
+        if (!placeholderApiInitDone) {
+            synchronized (TradeGui.class) {
+                if (!placeholderApiInitDone) {
+                    try {
+                        Class<?> placeholderApiClass = Class.forName("me.clip.placeholderapi.PlaceholderAPI");
+                        placeholderApiSetPlaceholders = placeholderApiClass.getMethod("setPlaceholders", Player.class, String.class);
+                    } catch (Throwable ignored) {
+                        placeholderApiSetPlaceholders = null;
+                    } finally {
+                        placeholderApiInitDone = true;
+                    }
+                }
+            }
+        }
+
+        if (placeholderApiSetPlaceholders == null) return input;
+        try {
+            return (String) placeholderApiSetPlaceholders.invoke(null, player.getPlayer(), input);
+        } catch (Throwable ignored) {
+            return input;
+        }
     }
 }

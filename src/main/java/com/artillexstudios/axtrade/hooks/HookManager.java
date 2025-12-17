@@ -2,25 +2,11 @@ package com.artillexstudios.axtrade.hooks;
 
 import com.artillexstudios.axapi.libs.boostedyaml.block.implementation.Section;
 import com.artillexstudios.axapi.utils.StringUtils;
-import com.artillexstudios.axtrade.hooks.currency.AxQuestBoardHook;
-import com.artillexstudios.axtrade.hooks.currency.BeastTokensHook;
-import com.artillexstudios.axtrade.hooks.currency.CoinsEngineHook;
 import com.artillexstudios.axtrade.hooks.currency.CurrencyHook;
-import com.artillexstudios.axtrade.hooks.currency.EcoBitsHook;
 import com.artillexstudios.axtrade.hooks.currency.ExperienceHook;
-import com.artillexstudios.axtrade.hooks.currency.KingdomsXHook;
 import com.artillexstudios.axtrade.hooks.currency.PlaceholderCurrencyHook;
 import com.artillexstudios.axtrade.hooks.currency.PlayerPointsHook;
-import com.artillexstudios.axtrade.hooks.currency.RedisEconomyHook;
-import com.artillexstudios.axtrade.hooks.currency.RivalCreditsHook;
-import com.artillexstudios.axtrade.hooks.currency.RivalHarvesterHoesHook;
-import com.artillexstudios.axtrade.hooks.currency.RoyaleEconomyHook;
-import com.artillexstudios.axtrade.hooks.currency.SuperMobCoinsHook;
-import com.artillexstudios.axtrade.hooks.currency.TheOnlyMobCoins;
-import com.artillexstudios.axtrade.hooks.currency.TokenManagerHook;
-import com.artillexstudios.axtrade.hooks.currency.UltraEconomyHook;
 import com.artillexstudios.axtrade.hooks.currency.VaultHook;
-import com.artillexstudios.axtrade.hooks.other.AxShulkersHook;
 import com.artillexstudios.axtrade.hooks.other.Placeholders;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
@@ -28,23 +14,17 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import static com.artillexstudios.axtrade.AxTrade.HOOKS;
 
 public class HookManager {
     private static final ArrayList<CurrencyHook> currency = new ArrayList<>();
-    private static AxShulkersHook axShulkersHook = null;
 
     public static void setupHooks() {
         updateHooks();
 
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             new Placeholders();
-        }
-
-        if (Bukkit.getPluginManager().getPlugin("AxShulkers") != null) {
-            axShulkersHook = new AxShulkersHook();
         }
     }
 
@@ -56,91 +36,20 @@ public class HookManager {
 
         if (HOOKS.getBoolean("currencies.Vault.register", true) && Bukkit.getPluginManager().getPlugin("Vault") != null) {
             currency.add(new VaultHook());
-            Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("&#33FF33[AxTrade] Hooked into Vault!"));
+            Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("<#33FF33>[AxTrade] Hooked into Vault!"));
         }
 
         if (HOOKS.getBoolean("currencies.PlayerPoints.register", true) && Bukkit.getPluginManager().getPlugin("PlayerPoints") != null) {
             currency.add(new PlayerPointsHook());
-            Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("&#33FF33[AxTrade] Hooked into PlayerPoints!"));
+            Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("<#33FF33>[AxTrade] Hooked into PlayerPoints!"));
         }
 
-        if (HOOKS.getBoolean("currencies.CoinsEngine.register", true) && Bukkit.getPluginManager().getPlugin("CoinsEngine") != null) {
-            for (Map<Object, Object> curr : HOOKS.getMapList("currencies.CoinsEngine.enabled")) {
-                currency.add(new CoinsEngineHook(curr));
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            for (String str : HOOKS.getSection("placeholder-currencies").getRoutesAsStrings(false)) {
+                if (!HOOKS.getBoolean("placeholder-currencies." + str + ".register", false)) continue;
+                currency.add(new PlaceholderCurrencyHook(str, HOOKS.getSection("placeholder-currencies." + str)));
+                Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("<#33FF33>[AxTrade] Loaded placeholder currency <white>" + str + "</white><#33FF33>!"));
             }
-            Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("&#33FF33[AxTrade] Hooked into CoinsEngine!"));
-        }
-
-        if (HOOKS.getBoolean("currencies.RoyaleEconomy.register", true) && Bukkit.getPluginManager().getPlugin("RoyaleEconomy") != null) {
-            currency.add(new RoyaleEconomyHook());
-            Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("&#33FF33[AxTrade] Hooked into RoyaleEconomy!"));
-        }
-
-        if (HOOKS.getBoolean("currencies.UltraEconomy.register", true) && Bukkit.getPluginManager().getPlugin("UltraEconomy") != null) {
-            for (Map<Object, Object> curr : HOOKS.getMapList("currencies.UltraEconomy.enabled")) {
-                currency.add(new UltraEconomyHook(curr));
-            }
-            Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("&#33FF33[AxTrade] Hooked into UltraEconomy!"));
-        }
-
-        if (HOOKS.getBoolean("currencies.KingdomsX.register", true) && Bukkit.getPluginManager().getPlugin("Kingdoms") != null) {
-            currency.add(new KingdomsXHook());
-            Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("&#33FF33[AxTrade] Hooked into KingdomsX!"));
-        }
-
-        if (HOOKS.getBoolean("currencies.RivalHarvesterHoes.register", true) && Bukkit.getPluginManager().getPlugin("RivalHarvesterHoes") != null) {
-            currency.add(new RivalHarvesterHoesHook());
-            Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("&#33FF33[AxTrade] Hooked into RivalHarvesterHoes!"));
-        }
-
-        if (HOOKS.getBoolean("currencies.SuperMobCoins.register", true) && Bukkit.getPluginManager().getPlugin("SuperMobCoins") != null) {
-            currency.add(new SuperMobCoinsHook());
-            Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("&#33FF33[AxTrade] Hooked into SuperMobCoins!"));
-        }
-
-        if (HOOKS.getBoolean("currencies.TheOnly-MobCoins.register", true) && Bukkit.getPluginManager().getPlugin("TheOnly-MobCoins") != null) {
-            currency.add(new TheOnlyMobCoins());
-            Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("&#33FF33[AxTrade] Hooked into TheOnly-MobCoins!"));
-        }
-
-        if (HOOKS.getBoolean("currencies.TokenManager.register", true) && Bukkit.getPluginManager().getPlugin("TokenManager") != null) {
-            currency.add(new TokenManagerHook());
-            Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("&#33FF33[AxTrade] Hooked into TokenManager!"));
-        }
-
-        if (HOOKS.getBoolean("currencies.AxQuestBoard.register", true) && Bukkit.getPluginManager().getPlugin("AxQuestBoard") != null) {
-            currency.add(new AxQuestBoardHook());
-            Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("&#33FF33[AxTrade] Hooked into AxQuestBoard!"));
-        }
-
-        if (HOOKS.getBoolean("currencies.RedisEconomy.register", true) && Bukkit.getPluginManager().getPlugin("RedisEconomy") != null) {
-            for (Map<Object, Object> curr : HOOKS.getMapList("currencies.RedisEconomy.enabled")) {
-                currency.add(new RedisEconomyHook(curr));
-            }
-            Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("&#33FF33[AxTrade] Hooked into RedisEconomy!"));
-        }
-
-        if (HOOKS.getBoolean("currencies.BeastTokens.register", true) && Bukkit.getPluginManager().getPlugin("BeastTokens") != null) {
-            currency.add(new BeastTokensHook());
-            Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("&#33FF33[AxTrade] Hooked into BeastTokens!"));
-        }
-
-        if (HOOKS.getBoolean("currencies.EcoBits.register", true) && Bukkit.getPluginManager().getPlugin("EcoBits") != null) {
-            for (Map<Object, Object> curr : HOOKS.getMapList("currencies.EcoBits.enabled")) {
-                currency.add(new EcoBitsHook(curr));
-            }
-            Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("&#33FF33[AxTrade] Hooked into EcoBits!"));
-        }
-
-        if (HOOKS.getBoolean("currencies.RivalCredits.register", true) && Bukkit.getPluginManager().getPlugin("RivalCredits") != null) {
-            currency.add(new RivalCreditsHook());
-            Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("&#33FF33[AxTrade] Hooked into RivalCredits!"));
-        }
-
-        for (String str : HOOKS.getSection("placeholder-currencies").getRoutesAsStrings(false)) {
-            if (!HOOKS.getBoolean("placeholder-currencies." + str + ".register", false)) continue;
-            currency.add(new PlaceholderCurrencyHook(str, HOOKS.getSection("placeholder-currencies." + str)));
-            Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("&#33FF33[AxTrade] Loaded placeholder currency " + str + "!"));
         }
 
         for (CurrencyHook hook : currency) hook.setup();
@@ -159,7 +68,7 @@ public class HookManager {
             HOOKS.save();
         }
 
-        Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("&#33FF33[AxTrade] Hooked into " + plugin.getName() + "! Note: Check the currencies.yml for settings!"));
+        Bukkit.getConsoleSender().sendMessage(StringUtils.formatToString("<#33FF33>[AxTrade] Hooked into <white>" + plugin.getName() + "</white><#33FF33>! Note: Check the currencies.yml for settings!"));
     }
 
     @NotNull
@@ -175,9 +84,5 @@ public class HookManager {
         }
 
         return null;
-    }
-
-    public static AxShulkersHook getAxShulkersHook() {
-        return axShulkersHook;
     }
 }

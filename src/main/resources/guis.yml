@@ -3,7 +3,7 @@
 
 # ----- SETTINGS -----
 
-title: "&0Trading with: %player%"
+title: "<black>Trading with: %player%"
 # a gui can have 1-6 rows
 rows: 6
 
@@ -40,49 +40,49 @@ own:
       # if you want, you can add head textures, like this:
       #material: "PLAYER_HEAD"
       #texture: "%own-head%"
-      name: "&#00ffdd&lᴀᴄᴄᴇᴘᴛ ᴛʀᴀᴅᴇ"
+      name: "<#00ffdd><b>ᴀᴄᴄᴇᴘᴛ ᴛʀᴀᴅᴇ</b>"
       lore:
         - ""
-        - " &7- &fAre you happy with the trade?"
+        - " <gray>- <white>Are you happy with the trade?"
         - ""
-        - "&#00ffdd&l> &#00ffddClick &8- &#00ffddConfirm Trade"
+        - "<#00ffdd><b>></b> Click <dark_gray>- <#00ffdd>Confirm Trade"
     cancel:
       material: "LIME_CONCRETE"
-      name: "&#00ffdd&lᴄᴀɴᴄᴇʟ ᴄᴏɴғɪʀᴍᴀᴛɪᴏɴ"
+      name: "<#00ffdd><b>ᴄᴀɴᴄᴇʟ ᴄᴏɴғɪʀᴍᴀᴛɪᴏɴ</b>"
       lore:
         - ""
-        - " &7- &fDo you want to change something?"
+        - " <gray>- <white>Do you want to change something?"
         - ""
-        - "&#00ffdd&l> &#00ffddClick &8- &#00ffddCancel Confirmation"
+        - "<#00ffdd><b>></b> Click <dark_gray>- <#00ffdd>Cancel Confirmation"
   # you can define as many currencies as you want, but make sure to copy them to the 'partner' section too!
   currency1:
     slot: 2
     # you need Vault installed for this
     currency: "Vault"
     material: "GOLD_NUGGET"
-    name: "&#00ffdd&lᴍᴏɴᴇʏ"
+    name: "<#00ffdd><b>ᴍᴏɴᴇʏ</b>"
     # you can use these placeholders:
     #  %amount% (the amount the player set)
     #  %tax-amount% (amount after tax)
     #  %tax-percent% (the % of tax on the currency)
     #  %tax-fee% (amount taken because of tax)
     lore:
-      - "&7Your offer"
+      - "<gray>Your offer"
       - ""
-      - " &7- &fAmount: &#00ffdd%amount%$"
+      - " <gray>- <white>Amount: <#00ffdd>%amount%$"
       - ""
-      - "&#00ffdd&l> &#00ffddClick &8- &#00ffddChange Amount"
+      - "<#00ffdd><b>></b> Click <dark_gray>- <#00ffdd>Change Amount"
   currency2:
     slot: 3
     currency: "Experience"
     material: "EXPERIENCE_BOTTLE"
-    name: "&#00ffdd&lᴇxᴘᴇʀɪᴇɴᴄᴇ"
+    name: "<#00ffdd><b>ᴇxᴘᴇʀɪᴇɴᴄᴇ</b>"
     lore:
-      - "&7Your offer"
+      - "<gray>Your offer"
       - ""
-      - " &7- &fAmount: &#00ffdd%amount% EXP"
+      - " <gray>- <white>Amount: <#00ffdd>%amount% EXP"
       - ""
-      - "&#00ffdd&l> &#00ffddClick &8- &#00ffddChange Amount"
+      - "<#00ffdd><b>></b> Click <dark_gray>- <#00ffdd>Change Amount"
 
 # items on your trade partner's side
 partner:
@@ -96,44 +96,44 @@ partner:
       # if you want, you can add head textures, like this:
       #material: "PLAYER_HEAD"
       #texture: "%partner-head%"
-      name: "&#00ffdd&lᴡᴀɪᴛɪɴɢ ғᴏʀ ᴏᴛʜᴇʀ ᴘʟᴀʏᴇʀ"
+      name: "<#00ffdd><b>ᴡᴀɪᴛɪɴɢ ғᴏʀ ᴏᴛʜᴇʀ ᴘʟᴀʏᴇʀ</b>"
       lore:
         - ""
-        - " &7- &f%partner-name% has not yet confirmed the trade!"
+        - " <gray>- <white>%partner-name% has not yet confirmed the trade!"
         - ""
     cancel:
       material: "LIME_CONCRETE"
-      name: "&#00ffdd&lᴡᴀɪᴛɪɴɢ"
+      name: "<#00ffdd><b>ᴡᴀɪᴛɪɴɢ</b>"
       lore:
         - ""
-        - " &7- &f%partner-name% has confirmed the trade!"
+        - " <gray>- <white>%partner-name% has confirmed the trade!"
   currency1:
     slot: 6
     currency: "Vault"
     material: "GOLD_NUGGET"
-    name: "&#00ffdd&lᴍᴏɴᴇʏ"
+    name: "<#00ffdd><b>ᴍᴏɴᴇʏ</b>"
     # you can use these placeholders:
     #  %amount% (the amount the player set)
     #  %tax-amount% (amount after tax)
     #  %tax-percent% (the % of tax on the currency)
     #  %tax-fee% (amount taken because of tax)
     lore:
-      - "&7%partner-name%'s offer"
+      - "<gray>%partner-name%'s offer"
       - ""
-      - " &7- &fAmount: &#00ffdd%amount%$"
+      - " <gray>- <white>Amount: <#00ffdd>%amount%$"
       - ""
-      - "&#00ffdd&l> &#00ffddClick &8- &#00ffddChange Amount"
+      - "<#00ffdd><b>></b> Click <dark_gray>- <#00ffdd>Change Amount"
   currency2:
     slot: 5
     currency: "Experience"
     material: "EXPERIENCE_BOTTLE"
-    name: "&#00ffdd&lᴇxᴘᴇʀɪᴇɴᴄᴇ"
+    name: "<#00ffdd><b>ᴇxᴘᴇʀɪᴇɴᴄᴇ</b>"
     lore:
-      - "&7%partner-name%'s offer"
+      - "<gray>%partner-name%'s offer"
       - ""
-      - " &7- &fAmount: &#00ffdd%amount% EXP"
+      - " <gray>- <white>Amount: <#00ffdd>%amount% EXP"
       - ""
-      - "&#00ffdd&l> &#00ffddClick &8- &#00ffddChange Amount"
+      - "<#00ffdd><b>></b> Click <dark_gray>- <#00ffdd>Change Amount"
 
 decoration-example:
   slot: [4, 13, 22, 31, 40, 49]
